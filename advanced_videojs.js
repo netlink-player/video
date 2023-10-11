@@ -6,6 +6,8 @@ var Ads = function () {
   this.startEvent = "click";
   this.isLoad = false;
   this.mainSticky = document.getElementById("main-videoplayer");
+  this.playButton = document.getElementById("playButton");
+
   document.addEventListener("scroll", this.sticky.bind(this));
   var vjsOptions = {
     autoplay: autoplayAllowed,
@@ -15,9 +17,6 @@ var Ads = function () {
   player = videojs("content_video", vjsOptions);
 
   this.player = videojs("content_video");
-
-  // Remove controls from the player on iPad to stop native controls from stealing
-  // our click
   var contentPlayer = document.getElementById("content_video_html5_api");
   if (
     (navigator.userAgent.match(/iPad/i) ||
@@ -26,10 +25,6 @@ var Ads = function () {
   ) {
     contentPlayer.removeAttribute("controls");
   }
-
-  // Start ads when the video player is clicked, but only the first time it's
-  // clicked.
-
   if (
     navigator.userAgent.match(/iPhone/i) ||
     navigator.userAgent.match(/iPad/i) ||
@@ -37,7 +32,6 @@ var Ads = function () {
   ) {
     this.startEvent = "touchend";
   }
-
   this.wrapperDiv = document.getElementById("content_video");
   this.boundInit = this.init.bind(this);
   this.wrapperDiv.addEventListener(this.startEvent, this.boundInit);
@@ -53,6 +47,10 @@ Ads.prototype.initPlayer = function () {
   console.log("okeke");
 };
 Ads.prototype.sticky = function () {
+  if (this.checkDivInViewableArea(this.mainSticky)) {
+    this.playButton.click();
+    this.playButton.remove();
+  }
   if (this.isLoad) {
     if (!this.checkDivInViewableArea(this.wrapperDiv) && !this.isSticky) {
       this.wrapperDiv.style.position = "fixed";
@@ -96,7 +94,7 @@ Ads.prototype.SAMPLE_AD_TAG =
   // "ad_rule=1&impl=s&gdfp_req=1&env=vp&output=xml_vmap1&" +
   // "unviewed_position_start=1&" +
   // "cust_params=sample_ar%3Dpremidpostpod%26deployment%3Dgmf-js&cmsid=496&" +
-  // "vid=short_onecue&correlator="
+  // "vid=short_onecue&correlator=";
 
 Ads.prototype.init = function () {
   this.player.ima.initializeAdDisplayContainer();
@@ -118,13 +116,15 @@ Ads.prototype.adsManagerLoadedCallback = function () {
     google.ima.AdEvent.Type.STARTED,
     google.ima.AdEvent.Type.THIRD_QUARTILE,
   ];
+  for (var index = 0; index < events.length; index++) {
+    this.player.ima.addEventListener(events[index], this.onAdEvent.bind(this));
+  }
 
-  
   this.player.ima.addEventListener(google.ima.AdEvent.Type.LOADED, () => {
     this.isLoad = true;
   });
-
-
 };
-
-
+Ads.prototype.onAdEvent = function (event) {
+  var message = "Ad event: " + event.type;
+  console.log(message);
+};

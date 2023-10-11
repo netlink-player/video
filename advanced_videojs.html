@@ -20,33 +20,32 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/netlink-player/video@master/instream.css"
     />
-
-    
-
     <title>Video.js ima Plugin</title>
   </head>
   <body>
+    <div style="height: 2000px; width: 100px; color: aqua"></div>
 
-      <div style="height: 2000px; width: 100px; color: aqua"></div>
-
-      <div id="main-videoplayer">
-        <video
-          id="content_video"
-          class="video-js vjs-default-skin"
-          controls
-          preload="auto"
-          width="640"
-          height="360"
-          playsinline
-        >
-          <source
-            src="//commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-            type="video/mp4"
-          />
-        </video>
-      </div>
-      <div style="height: 1000px; width: 100px; color: aqua"></div>
+    <div id="main-videoplayer">
+      <video
+        id="content_video"
+        class="video-js vjs-default-skin"
+        controls
+        preload="auto"
+        width="640"
+        height="360"
+        playsinline
+      >
+      <button id="playButton" style="display: none;"></button>
+        <source
+          src="//commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          type="video/mp4"
+        />
+     
+      </video>
     </div>
+
+    <div style="height: 1000px; width: 100px; color: aqua"></div>
+
     <script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/netlink-player/video@master/instream.js"></script>
     <script src="advanced_videojs.js"></script>
