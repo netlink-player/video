@@ -47,10 +47,10 @@ Ads.prototype.initPlayer = function () {
   console.log("okeke");
 };
 Ads.prototype.sticky = function () {
-  if (this.checkDivInViewableArea(this.mainSticky)) {
-    this.playButton.click();
-    this.playButton.remove();
-  }
+  // if (this.checkDivInViewableArea(this.mainSticky)) {
+  //   this.playButton.click();
+  //   this.playButton.remove();
+  // }
   if (this.isLoad) {
     if (!this.checkDivInViewableArea(this.wrapperDiv) && !this.isSticky) {
       this.wrapperDiv.style.position = "fixed";
