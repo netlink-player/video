@@ -7,19 +7,6 @@ var Ads = function () {
   this.isLoad = false;
   this.mainSticky = document.getElementById("main-videoplayer");
   document.addEventListener("scroll", this.sticky.bind(this));
-  canAutoplay
-    .video({timeout: 100, muted: false})
-    .then(function(response) {
-        if(response.result === false) {
-          // Unmuted autoplay is not allowed.
-          checkMutedAutoplaySupport();
-        } else {
-          // Unmuted autoplay is allowed.
-          autoplayAllowed = true;
-          autoplayRequiresMute = false;
-          initPlayer();
-        }
-    })
   var vjsOptions = {
     autoplay: autoplayAllowed,
     muted: autoplayRequiresMute,
@@ -73,6 +60,7 @@ Ads.prototype.sticky = function () {
       this.wrapperDiv.style.left = 0;
       this.wrapperDiv.style.height = "250px";
       this.wrapperDiv.style.width = "320px";
+      this.wrapperDiv.style.zIndex = 10000;
       this.isSticky = true;
     }
     if (
@@ -83,7 +71,7 @@ Ads.prototype.sticky = function () {
       this.wrapperDiv.style.removeProperty("width");
       this.wrapperDiv.style.removeProperty("position");
       this.wrapperDiv.style.removeProperty("bottom");
-      this.wrapperDiv.style.removeProperty("left");
+      this.wrapperDiv.style.removeProperty("zIndex");
       this.isSticky = false;
     }
   }
@@ -101,12 +89,14 @@ Ads.prototype.checkDivInViewableArea = function (div) {
 };
 
 Ads.prototype.SAMPLE_AD_TAG =
-  "http://pubads.g.doubleclick.net/gampad/ads?" +
-  "sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&" +
-  "ad_rule=1&impl=s&gdfp_req=1&env=vp&output=xml_vmap1&" +
-  "unviewed_position_start=1&" +
-  "cust_params=sample_ar%3Dpremidpostpod%26deployment%3Dgmf-js&cmsid=496&" +
-  "vid=short_onecue&correlator=";
+  "https://googleads.g.doubleclick.net/pagead/ads?ad_type=video_image&client=ca-video-pub-3166493188367342&description_url=http%3A%2F%2Fwww.tinmoi.vn&videoad_start_delay=0&hl=en&max_ad_duration=15000&sdmax=30000";
+
+  // "http://pubads.g.doubleclick.net/gampad/ads?" +
+  // "sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&" +
+  // "ad_rule=1&impl=s&gdfp_req=1&env=vp&output=xml_vmap1&" +
+  // "unviewed_position_start=1&" +
+  // "cust_params=sample_ar%3Dpremidpostpod%26deployment%3Dgmf-js&cmsid=496&" +
+  // "vid=short_onecue&correlator="
 
 Ads.prototype.init = function () {
   this.player.ima.initializeAdDisplayContainer();
