@@ -4,6 +4,7 @@ var autoplayRequiresMute = false;
 var Ads = function () {
   this.isSticky = false;
   this.startEvent = "click";
+  this.isFirst = false;
   this.isLoad = false;
   this.mainSticky = document.getElementById("main-videoplayer");
   this.playButton = document.getElementById("playButton");
@@ -47,9 +48,10 @@ Ads.prototype.initPlayer = function () {
   console.log("okeke");
 };
 Ads.prototype.sticky = function () {
-  if (this.checkDivInViewableArea(this.mainSticky)) {
+  if (this.checkDivInViewableArea(this.mainSticky) && !this.isFirst) {
     this.playButton.click();
     this.playButton.remove();
+    this.isFirst = false;
   }
   if (this.isLoad) {
     if (!this.checkDivInViewableArea(this.wrapperDiv) && !this.isSticky) {
