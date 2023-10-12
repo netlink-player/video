@@ -51,7 +51,7 @@ Ads.prototype.sticky = function () {
   if (this.checkDivInViewableArea(this.mainSticky) && !this.isFirst) {
     this.playButton.click();
     this.playButton.remove();
-    this.isFirst = false;
+    this.isFirst = true;
   }
   if (this.isLoad) {
     if (!this.checkDivInViewableArea(this.wrapperDiv) && !this.isSticky) {
