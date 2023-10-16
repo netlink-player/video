@@ -1,10 +1,11 @@
 var autoplayAllowed = false;
 var autoplayRequiresMute = false;
+var isFirst;
 
 var Ads = function () {
   this.isSticky = false;
   this.startEvent = "click";
-  this.isFirst = false;
+  isFirst = false;
   this.isLoad = false;
   this.mainSticky = document.getElementById("main-videoplayer");
 
@@ -51,8 +52,8 @@ Ads.prototype.sticky = function () {
   if (this.checkDivInViewableArea(this.mainSticky) && !this.isFirst) {
     this.playButton.click();
     this.playButton.remove();
-    this.isFirst = true;
-    console.log("okkr");
+    isFirst = true;
+    console.log("hheh");
   }
   if (this.isLoad) {
     if (!this.checkDivInViewableArea(this.wrapperDiv) && !this.isSticky) {
