@@ -50,7 +50,7 @@ var Ads = function () {
 Ads.prototype.sticky = function () {
   if (this.checkDivInViewableArea(this.mainSticky) && !this.isFirst) {
     this.playButton.click();
-    // this.playButton.remove();
+    this.playButton.remove();
     this.isFirst = true;
     console.log("okkr");
   }
