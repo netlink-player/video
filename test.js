@@ -1,20 +1,20 @@
 var autoplayAllowed = false;
 var autoplayRequiresMute = false;
-var isFirst = false;
 
 var Ads = function () {
   this.isSticky = false;
   this.startEvent = "click";
+  this.isFirst = false;
   this.isLoad = false;
   this.mainSticky = document.getElementById("main-videoplayer");
 
   document.addEventListener("scroll", this.sticky.bind(this));
-  var vjsOptions = {
-    autoplay: autoplayAllowed,
-    muted: autoplayRequiresMute,
-    debug: true,
-  };
-  player = videojs("content_video", vjsOptions);
+  // var vjsOptions = {
+  //   autoplay: autoplayAllowed,
+  //   muted: autoplayRequiresMute,
+  //   debug: true,
+  // };
+  player = videojs("content_video");
 
   this.player = videojs("content_video");
   var contentPlayer = document.getElementById("content_video_html5_api");
@@ -51,9 +51,10 @@ Ads.prototype.sticky = function () {
   if (this.checkDivInViewableArea(this.mainSticky) && !this.isFirst) {
     this.playButton.click();
     this.playButton.remove();
-    isFirst = true;
-    console.log("hheh");
+    this.isFirst = true;
+    console.log("heheh");
   }
+  console.log("11");
   if (this.isLoad) {
     if (!this.checkDivInViewableArea(this.wrapperDiv) && !this.isSticky) {
       this.wrapperDiv.style.position = "fixed";
