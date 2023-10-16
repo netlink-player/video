@@ -1,11 +1,10 @@
 var autoplayAllowed = false;
 var autoplayRequiresMute = false;
-var isFirst;
+var isFirst = false;
 
 var Ads = function () {
   this.isSticky = false;
   this.startEvent = "click";
-  isFirst = false;
   this.isLoad = false;
   this.mainSticky = document.getElementById("main-videoplayer");
 
