@@ -1,7 +1,6 @@
-var autoplayAllowed = false;
-var autoplayRequiresMute = false;
-
 var Ads = function () {
+  this.autoplayAllowed = false;
+  this.autoplayRequiresMute = false;
   this.isSticky = false;
   this.startEvent = "click";
   this.isFirst = false;
@@ -9,12 +8,12 @@ var Ads = function () {
   this.mainSticky = document.getElementById("main-videoplayer");
 
   document.addEventListener("scroll", this.sticky.bind(this));
-  // var vjsOptions = {
-  //   autoplay: autoplayAllowed,
-  //   muted: autoplayRequiresMute,
-  //   debug: true,
-  // };
-  player = videojs("content_video");
+  var vjsOptions = {
+    autoplay: this.autoplayAllowed,
+    muted: this.autoplayRequiresMute,
+    debug: true,
+  };
+  player = videojs("content_video", vjsOptions);
 
   this.player = videojs("content_video");
   var contentPlayer = document.getElementById("content_video_html5_api");
@@ -35,7 +34,8 @@ var Ads = function () {
   this.wrapperDiv = document.getElementById("content_video");
   this.playButton = document.getElementById("playButton");
   this.boundInit = this.init.bind(this);
-  this.wrapperDiv.addEventListener(this.startEvent, this.boundInit);
+  console.log("click");
+  this.wrapperDiv.addEventListener('click', this.boundInit);
 
   var options = {
     id: "content_video",
@@ -54,7 +54,6 @@ Ads.prototype.sticky = function () {
     this.isFirst = true;
     console.log("heheh");
   }
-  console.log("11");
   if (this.isLoad) {
     if (!this.checkDivInViewableArea(this.wrapperDiv) && !this.isSticky) {
       this.wrapperDiv.style.position = "fixed";
