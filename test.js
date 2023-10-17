@@ -8,12 +8,13 @@ var Ads = function () {
   this.mainSticky = document.getElementById("main-videoplayer");
 
   document.addEventListener("scroll", this.sticky.bind(this));
+
   var vjsOptions = {
     autoplay: this.autoplayAllowed,
     muted: this.autoplayRequiresMute,
     debug: true,
   };
-  player = videojs("content_video", vjsOptions);
+  player = videojs("content_video");
 
   this.player = videojs("content_video");
   var contentPlayer = document.getElementById("content_video_html5_api");
@@ -34,26 +35,36 @@ var Ads = function () {
   this.wrapperDiv = document.getElementById("content_video");
   this.playButton = document.getElementById("playButton");
   this.boundInit = this.init.bind(this);
-  console.log("click");
-  this.wrapperDiv.addEventListener('click', this.boundInit);
+  this.playButton.addEventListener("click", () => {
+    this.wrapperDiv.addEventListener(this.startEvent, this.boundInit);
+  });
 
   var options = {
     id: "content_video",
     adsManagerLoadedCallback: this.adsManagerLoadedCallback.bind(this),
   };
+  // document.onload = function () {
+  //   if (this.checkDivInViewableArea(this.mainSticky)) {
+  //     console.log("heh");
+  //   }
+  // };
+
   this.player.ima(options);
+  setTimeout(() => {
+    this.playButton.click();
+  }, 3000);
 };
 
 // Ads.prototype.initPlayer = function () {
-//   console.log("okeke");
+
 // };
 Ads.prototype.sticky = function () {
-  if (this.checkDivInViewableArea(this.mainSticky) && !this.isFirst) {
-    this.playButton.click();
-    this.playButton.remove();
-    this.isFirst = true;
-    console.log("heheh");
-  }
+  // if (this.checkDivInViewableArea(this.mainSticky) && !this.isFirst) {
+  //   this.player.play();
+  //   // this.playButton.remove();
+  //   this.isFirst = true;
+  //   console.log("heheh");
+  // }
   if (this.isLoad) {
     if (!this.checkDivInViewableArea(this.wrapperDiv) && !this.isSticky) {
       this.wrapperDiv.style.position = "fixed";
