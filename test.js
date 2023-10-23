@@ -83,7 +83,11 @@ var Ads = function () {
     "DOMContentLoaded",
     function () {
       setTimeout(() => {
-        this.playButton.click();
+        var buttons = document.getElementsByClassName("vjs-big-play-button");
+        for (var i = 0; i < buttons.length; i++) {
+          var button = buttons[i];
+          button.click();
+        }
       }, 3000);
     }.bind(this)
   );
