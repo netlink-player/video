@@ -150,6 +150,8 @@ Ads.prototype.SAMPLE_AD_TAG =
 
 Ads.prototype.init = function () {
   this.player.ima.initializeAdDisplayContainer();
+  var adsRenderingSettings = new google.ima.AdsRenderingSettings();
+  adsRenderingSettings.enablePreloading = true;
   this.player.ima.setContentWithAdTag(null, this.SAMPLE_AD_TAG, false);
   this.player.ima.requestAds();
   this.wrapperDiv.removeEventListener(this.startEvent, this.boundInit);
