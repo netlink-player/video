@@ -16,16 +16,29 @@
 
 <html>
   <head>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/netlink-player/video@master/instream.css"
-    />
+    <link rel="stylesheet" href="instream.css" />
     <title>Video.js ima Plugin</title>
   </head>
   <body>
     <div style="height: 2000px; width: 100px; color: aqua"></div>
 
     <div id="main-videoplayer">
+      <!-- <div id = 'bgr_netlink'>
+        <button
+          style="right: 0%; height: 100%; font-weight: bold; position: absolute;"
+        >
+          &#x2715;
+        </button>
+        <a
+          href="https://netlink.vn"
+          target="_blank"
+          id="netlink_logo"
+          style="left: 1%; position: absolute"
+          ><img
+            src="https://netlink.vn/wp-content/uploads/2023/09/logo-netlink.webp"
+            style="vertical-align: middle; height: 20px"
+        /></a>
+      </div> -->
       <video
         id="content_video"
         class="video-js vjs-default-skin"
@@ -35,12 +48,11 @@
         height="360"
         playsinline
       >
-      <button id="playButton" style="display: none;"></button>
+        <button id="playButton" style="display: none"></button>
         <source
           src="//commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
           type="video/mp4"
         />
-     
       </video>
     </div>
 

@@ -1,20 +1,44 @@
-var autoplayAllowed = false;
-var autoplayRequiresMute = false;
-
 var Ads = function () {
+  this.autoplayAllowed = false;
+  this.autoplayRequiresMute = false;
   this.isSticky = false;
   this.startEvent = "click";
   this.isFirst = false;
   this.isLoad = false;
   this.mainSticky = document.getElementById("main-videoplayer");
 
+  var bgr_netlink = document.createElement("div");
+  bgr_netlink.id = "bgr_netlink";
+
+  var scriptElement_btn = document.createElement("button");
+
+  scriptElement_btn.innerHTML = "&#x2715;";
+  scriptElement_btn.style =
+    "right: 0%; height: 100%; font-weight: bold; position: absolute;";
+
+  var scriptElement = document.createElement("a");
+  scriptElement.href = "https://netlink.vn";
+  scriptElement.id = "netlink_logo";
+  scriptElement.style = "left: 1%; position: absolute";
+
+  var scriptElement_img = document.createElement("img");
+  scriptElement_img.src =
+    "https://cdn.jsdelivr.net/gh/netlink-player/video@master/logo-netlink.webp";
+  scriptElement_img.style = "vertical-align: middle; height: 20px";
+
+  scriptElement.appendChild(scriptElement_img);
+  bgr_netlink.prepend(scriptElement_btn);
+  bgr_netlink.appendChild(scriptElement);
+  this.mainSticky.prepend(bgr_netlink);
+
   document.addEventListener("scroll", this.sticky.bind(this));
+
   var vjsOptions = {
-    autoplay: autoplayAllowed,
-    muted: autoplayRequiresMute,
+    autoplay: this.autoplayAllowed,
+    muted: this.autoplayRequiresMute,
     debug: true,
   };
-  player = videojs("content_video", vjsOptions);
+  player = videojs("content_video");
 
   this.player = videojs("content_video");
   var contentPlayer = document.getElementById("content_video_html5_api");
@@ -36,23 +60,36 @@ var Ads = function () {
   this.playButton = document.getElementById("playButton");
   this.boundInit = this.init.bind(this);
   this.wrapperDiv.addEventListener(this.startEvent, this.boundInit);
+  // this.playButton.addEventListener("click", () => {});
 
   var options = {
     id: "content_video",
     adsManagerLoadedCallback: this.adsManagerLoadedCallback.bind(this),
   };
+  // document.onload = function () {
+  //   if (this.checkDivInViewableArea(this.mainSticky)) {
+  //     console.log("heh");
+  //   }
+  // };
+
   this.player.ima(options);
+
+  setTimeout(() => {
+    // this.wrapperDiv.play();
+    // this.init.bind(this);
+    // videojs("vjs-big-play-button").play();
+  }, 3000);
 };
 
 // Ads.prototype.initPlayer = function () {
-//   console.log("okeke");
+
 // };
 Ads.prototype.sticky = function () {
   // if (this.checkDivInViewableArea(this.mainSticky) && !this.isFirst) {
-  //   this.playButton.click();
+  //   this.player.play();
   //   // this.playButton.remove();
   //   this.isFirst = true;
-  //   console.log("okkr");
+  //   console.log("heheh");
   // }
   if (this.isLoad) {
     if (!this.checkDivInViewableArea(this.wrapperDiv) && !this.isSticky) {

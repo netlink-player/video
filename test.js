@@ -7,6 +7,30 @@ var Ads = function () {
   this.isLoad = false;
   this.mainSticky = document.getElementById("main-videoplayer");
 
+  var bgr_netlink = document.createElement("div");
+  bgr_netlink.id = "bgr_netlink";
+
+  var scriptElement_btn = document.createElement("button");
+
+  scriptElement_btn.innerHTML = "&#x2715;";
+  scriptElement_btn.style =
+    "right: 0%; height: 100%; font-weight: bold; position: absolute;";
+
+  var scriptElement = document.createElement("a");
+  scriptElement.href = "https://netlink.vn";
+  scriptElement.id = "netlink_logo";
+  scriptElement.style = "left: 1%; position: absolute";
+
+  var scriptElement_img = document.createElement("img");
+  scriptElement_img.src =
+    "https://cdn.jsdelivr.net/gh/netlink-player/video@master/logo-netlink.webp";
+  scriptElement_img.style = "vertical-align: middle; height: 20px";
+
+  scriptElement.appendChild(scriptElement_img);
+  bgr_netlink.prepend(scriptElement_btn);
+  bgr_netlink.appendChild(scriptElement);
+  this.mainSticky.prepend(bgr_netlink);
+
   document.addEventListener("scroll", this.sticky.bind(this));
 
   var vjsOptions = {
@@ -35,9 +59,8 @@ var Ads = function () {
   this.wrapperDiv = document.getElementById("content_video");
   this.playButton = document.getElementById("playButton");
   this.boundInit = this.init.bind(this);
-  this.playButton.addEventListener("click", () => {
-    this.wrapperDiv.addEventListener(this.startEvent, this.boundInit);
-  });
+  this.wrapperDiv.addEventListener(this.startEvent, this.boundInit);
+  // this.playButton.addEventListener("click", () => {});
 
   var options = {
     id: "content_video",
@@ -50,8 +73,11 @@ var Ads = function () {
   // };
 
   this.player.ima(options);
+
   setTimeout(() => {
-    this.playButton.click();
+    // this.wrapperDiv.play();
+    // this.init.bind(this);
+    // videojs("vjs-big-play-button").play();
   }, 3000);
 };
 
