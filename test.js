@@ -24,7 +24,7 @@ var Ads = function () {
   var scriptElement_img = document.createElement("img");
   scriptElement_img.src =
     "https://cdn.jsdelivr.net/gh/netlink-player/video@master/logo-netlink.webp";
-  scriptElement_img.style = "vertical-align: middle; height: 20px";
+  scriptElement_img.style = "vertical-align: middle; height: 20px; width: 63px";
 
   scriptElement.appendChild(scriptElement_img);
   bgr_netlink.prepend(scriptElement_btn);
@@ -74,11 +74,19 @@ var Ads = function () {
 
   this.player.ima(options);
 
-  setTimeout(() => {
-    // this.wrapperDiv.play();
-    // this.init.bind(this);
-    // videojs("vjs-big-play-button").play();
-  }, 3000);
+  // setTimeout(() => {
+  //   // this.wrapperDiv.play();
+  //   // this.init.bind(this);
+  //   // videojs("vjs-big-play-button").play();
+  // }, 3000);
+  document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+      setTimeout(() => {
+        this.playButton.click();
+      }, 3000);
+    }.bind(this)
+  );
 };
 
 // Ads.prototype.initPlayer = function () {
