@@ -24,7 +24,7 @@ var Ads = function () {
   var scriptElement_img = document.createElement("img");
   scriptElement_img.src =
     "https://cdn.jsdelivr.net/gh/netlink-player/video@master/logo-netlink.webp";
-  scriptElement_img.style = "vertical-align: middle; height: 20px";
+  scriptElement_img.style = "vertical-align: middle; height: 20px; width: 63px";
 
   scriptElement.appendChild(scriptElement_img);
   bgr_netlink.prepend(scriptElement_btn);
