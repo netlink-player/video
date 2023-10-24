@@ -94,7 +94,7 @@ footer {
   width: 100%;
   /* border-radius: 15px 15px 0 0; */
   border: 0px;
-  background-color: #000000b2;
+  /* background-color: #000000b2; */
   align-items: center;
   z-index: 10000;
 }

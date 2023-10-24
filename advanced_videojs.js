@@ -19,12 +19,12 @@ var Ads = function () {
   var scriptElement = document.createElement("a");
   scriptElement.href = "https://netlink.vn";
   scriptElement.id = "netlink_logo";
-  scriptElement.style = "left: 1%; position: absolute";
+  scriptElement.style = "left: 0; position: absolute";
 
   var scriptElement_img = document.createElement("img");
   scriptElement_img.src =
-    "https://cdn.jsdelivr.net/gh/netlink-player/video@master/logo-netlink.webp";
-  scriptElement_img.style = "vertical-align: middle; height: 20px; width: 63px";
+    "https://cdn.jsdelivr.net/gh/netlink-player/video@master/logo-netlink.svg";
+  scriptElement_img.style = "height: 30px; width: auto";
 
   scriptElement.appendChild(scriptElement_img);
   bgr_netlink.prepend(scriptElement_btn);
@@ -98,7 +98,7 @@ Ads.prototype.sticky = function () {
       this.wrapperDiv.style.left = 0;
       this.wrapperDiv.style.height = "250px";
       this.wrapperDiv.style.width = "320px";
-      this.wrapperDiv.style.zIndex = 10000;
+      this.wrapperDiv.style.zIndex = 100000;
       this.isSticky = true;
     }
     if (
