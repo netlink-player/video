@@ -19,12 +19,12 @@ var Ads = function () {
   var scriptElement = document.createElement("a");
   scriptElement.href = "https://netlink.vn";
   scriptElement.id = "netlink_logo";
-  scriptElement.style = "left: 1%; position: absolute";
+  scriptElement.style = "left: 0; position: absolute";
 
   var scriptElement_img = document.createElement("img");
   scriptElement_img.src =
-    "https://cdn.jsdelivr.net/gh/netlink-player/video@master/logo-netlink.webp";
-  scriptElement_img.style = "vertical-align: middle; height: 20px; width: 63px";
+    "https://cdn.jsdelivr.net/gh/netlink-player/video@master/logo-netlink.svg";
+  scriptElement_img.style = "height: 30px; width: 78px";
 
   scriptElement.appendChild(scriptElement_img);
   bgr_netlink.prepend(scriptElement_btn);
@@ -57,7 +57,7 @@ var Ads = function () {
     this.startEvent = "touchend";
   }
   this.wrapperDiv = document.getElementById("content_video");
-  this.playButton = document.getElementById("playButton");
+  // this.playButton = document.getElementById("playButton");
   this.boundInit = this.init.bind(this);
   this.wrapperDiv.addEventListener(this.startEvent, this.boundInit);
   // this.playButton.addEventListener("click", () => {});
@@ -83,7 +83,7 @@ var Ads = function () {
     "DOMContentLoaded",
     function () {
       setTimeout(() => {
-        var buttons = document.getElementsByClassName("vjs-big-play-button");
+        var buttons = document.getElementsByClassName("playButton");
         for (var i = 0; i < buttons.length; i++) {
           var button = buttons[i];
           button.click();
