@@ -1,3 +1,8 @@
+var style = document.createElement('style');
+style.type = 'text/css';
+style.innerHTML = '.player-logo { height: 30px; width: auto !important }';
+document.getElementsByTagName('head')[0].appendChild(style);
+
 var Ads = function () {
   this.autoplayAllowed = false;
   this.autoplayRequiresMute = false;
@@ -25,6 +30,7 @@ var Ads = function () {
   scriptElement_img.src =
     "https://cdn.jsdelivr.net/gh/netlink-player/video@master/logo-netlink.svg";
   scriptElement_img.style = "height: 30px; width: 78px !important";
+  scriptElement_img.className = 'player-logo';
 
   scriptElement.appendChild(scriptElement_img);
   bgr_netlink.prepend(scriptElement_btn);
