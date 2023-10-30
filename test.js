@@ -1,4 +1,15 @@
-var Ads = function () {
+var style = document.createElement("style");
+style.type = "text/css";
+style.innerHTML = ".player-logo { height: 30px; width: auto !important }";
+document.getElementsByTagName("head")[0].appendChild(style);
+
+var bgr_netlink = document.createElement("div");
+
+var scriptElement_btn = document.createElement("button");
+
+var Ads = function (adVastTag, left) {
+  this.isLeft = left;
+  this.isDel = false;
   this.autoplayAllowed = false;
   this.autoplayRequiresMute = false;
   this.isSticky = false;
@@ -6,28 +17,35 @@ var Ads = function () {
   this.isFirst = false;
   this.isLoad = false;
   this.mainSticky = document.getElementById("main-videoplayer");
+  this.adVastTagz = adVastTag;
+  // console.log(this.adVastTagz);
+  console.log(this.isLeft);
 
-  var bgr_netlink = document.createElement("div");
+  // var bgr_netlink = document.createElement("div");
   bgr_netlink.id = "bgr_netlink";
-
-  var scriptElement_btn = document.createElement("button");
-
-  scriptElement_btn.innerHTML = "&#x2715;";
-  scriptElement_btn.style =
-    "right: 0%; height: 100%; font-weight: bold; position: absolute;";
 
   var scriptElement = document.createElement("a");
   scriptElement.href = "https://netlink.vn";
   scriptElement.id = "netlink_logo";
-  scriptElement.style = "left: 0; position: absolute";
+  // scriptElement.style = "left: 0; position: absolute";
 
   var scriptElement_img = document.createElement("img");
   scriptElement_img.src =
     "https://cdn.jsdelivr.net/gh/netlink-player/video@master/logo-netlink.svg";
-  scriptElement_img.style = "height: 30px; width: 78px";
+  scriptElement_img.style = "height: 30px; width: 78px !important";
+  scriptElement_img.className = "player-logo";
+
+  scriptElement_btn.innerHTML = "&#x2715;";
+  if (this.isLeft) {
+    scriptElement_btn.style =
+      "width: 30; right: 0; bottom: 250; font-weight: bold; position: fixed;";
+  } else {
+    scriptElement_btn.style =
+      "width: 30; left: 290; bottom: 250; font-weight: bold; position: fixed;";
+  }
 
   scriptElement.appendChild(scriptElement_img);
-  bgr_netlink.prepend(scriptElement_btn);
+  // bgr_netlink.prepend(scriptElement_btn);
   bgr_netlink.appendChild(scriptElement);
   this.mainSticky.prepend(bgr_netlink);
 
@@ -57,7 +75,7 @@ var Ads = function () {
     this.startEvent = "touchend";
   }
   this.wrapperDiv = document.getElementById("content_video");
-  // this.playButton = document.getElementById("playButton");
+  this.playButton = document.getElementById("playButton");
   this.boundInit = this.init.bind(this);
   this.wrapperDiv.addEventListener(this.startEvent, this.boundInit);
   // this.playButton.addEventListener("click", () => {});
@@ -73,55 +91,81 @@ var Ads = function () {
   // };
 
   this.player.ima(options);
+  scriptElement_btn.addEventListener("click", () => {
+    this.isDel = true;
+    scriptElement_btn.style.display = "none";
 
-  // setTimeout(() => {
-  //   // this.wrapperDiv.play();
-  //   // this.init.bind(this);
-  //   // videojs("vjs-big-play-button").play();
-  // }, 3000);
-  document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-      setTimeout(() => {
-        var buttons = document.getElementsByClassName("playButton");
-        for (var i = 0; i < buttons.length; i++) {
-          var button = buttons[i];
-          button.click();
-        }
-      }, 3000);
-    }.bind(this)
-  );
+    bgr_netlink.style.removeProperty("bottom");
+    bgr_netlink.style.removeProperty("left");
+    bgr_netlink.style.removeProperty("position");
+    this.wrapperDiv.style.removeProperty("height");
+    this.wrapperDiv.style.removeProperty("width");
+    this.wrapperDiv.style.removeProperty("position");
+    this.wrapperDiv.style.removeProperty("bottom");
+    this.wrapperDiv.style.removeProperty("zIndex");
+  });
+
+  setTimeout(() => {
+    // this.wrapperDiv.play();
+    // this.init.bind(this);
+    // videojs("vjs-big-play-button").play();
+  }, 3000);
 };
-
-// Ads.prototype.initPlayer = function () {
 
 // };
 Ads.prototype.sticky = function () {
-  // if (this.checkDivInViewableArea(this.mainSticky) && !this.isFirst) {
-  //   this.player.play();
-  //   // this.playButton.remove();
-  //   this.isFirst = true;
-  //   console.log("heheh");
-  // }
   if (this.isLoad) {
-    if (!this.checkDivInViewableArea(this.wrapperDiv) && !this.isSticky) {
+    if (
+      !this.checkDivInViewableArea(this.wrapperDiv) &&
+      !this.isSticky &&
+      !this.isDel
+    ) {
+      bgr_netlink.style.position = "fixed";
+      bgr_netlink.style.bottom = 250;
+
+      bgr_netlink.prepend(scriptElement_btn);
+      scriptElement_btn.style.display = "block";
+
+      if (this.isLeft) {
+        bgr_netlink.style.width = 320;
+        bgr_netlink.style.right = 0;
+        this.wrapperDiv.style.right = 0;
+      } else {
+        bgr_netlink.style.left = 0;
+        this.wrapperDiv.style.left = 0;
+      }
+
       this.wrapperDiv.style.position = "fixed";
       this.wrapperDiv.style.bottom = 0;
-      this.wrapperDiv.style.left = 0;
+
       this.wrapperDiv.style.height = "250px";
       this.wrapperDiv.style.width = "320px";
-      this.wrapperDiv.style.zIndex = 10000;
+      this.wrapperDiv.style.zIndex = 100000;
       this.isSticky = true;
     }
     if (
-      this.checkDivInViewableArea(this.mainSticky) &&
-      this.wrapperDiv.getBoundingClientRect().left == 0
+      this.checkDivInViewableArea(this.mainSticky)
+      // &&
+      // this.wrapperDiv.getBoundingClientRect().left == 0
     ) {
+      if (this.isLeft) {
+        bgr_netlink.style.removeProperty("right");
+        this.wrapperDiv.style.removeProperty("right");
+      } else {
+        bgr_netlink.style.removeProperty("left");
+        this.wrapperDiv.style.removeProperty("left");
+      }
+
+      bgr_netlink.style.removeProperty("bottom");
+
+      bgr_netlink.style.removeProperty("position");
+
       this.wrapperDiv.style.removeProperty("height");
       this.wrapperDiv.style.removeProperty("width");
       this.wrapperDiv.style.removeProperty("position");
       this.wrapperDiv.style.removeProperty("bottom");
       this.wrapperDiv.style.removeProperty("zIndex");
+      scriptElement_btn.style.display = "none";
       this.isSticky = false;
     }
   }
@@ -135,24 +179,22 @@ Ads.prototype.checkDivInViewableArea = function (div) {
   const left = div.getBoundingClientRect().left;
   const windowHeight = window.innerHeight;
   const windowWidth = window.innerWidth;
-  return top >= 0 && top <= windowHeight && left >= 0 && left <= windowWidth;
+  return top >= 0 && top <= windowHeight;
 };
 
 Ads.prototype.SAMPLE_AD_TAG =
-  // "https://googleads.g.doubleclick.net/pagead/ads?ad_type=video_image&client=ca-video-pub-3166493188367342&description_url=http%3A%2F%2Fwww.tinmoi.vn&videoad_start_delay=0&hl=en&max_ad_duration=15000&sdmax=30000";
+  "https://googleads.g.doubleclick.net/pagead/ads?ad_type=video_image&client=ca-video-pub-3166493188367342&description_url=http%3A%2F%2Fwww.tinmoi.vn&videoad_start_delay=0&hl=en&max_ad_duration=15000&sdmax=30000";
 
-  "http://pubads.g.doubleclick.net/gampad/ads?" +
-  "sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&" +
-  "ad_rule=1&impl=s&gdfp_req=1&env=vp&output=xml_vmap1&" +
-  "unviewed_position_start=1&" +
-  "cust_params=sample_ar%3Dpremidpostpod%26deployment%3Dgmf-js&cmsid=496&" +
-  "vid=short_onecue&correlator=";
+// "http://pubads.g.doubleclick.net/gampad/ads?" +
+// "sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&" +
+// "ad_rule=1&impl=s&gdfp_req=1&env=vp&output=xml_vmap1&" +
+// "unviewed_position_start=1&" +
+// "cust_params=sample_ar%3Dpremidpostpod%26deployment%3Dgmf-js&cmsid=496&" +
+// "vid=short_onecue&correlator=";
 
 Ads.prototype.init = function () {
   this.player.ima.initializeAdDisplayContainer();
-  var adsRenderingSettings = new google.ima.AdsRenderingSettings();
-  adsRenderingSettings.enablePreloading = true;
-  this.player.ima.setContentWithAdTag(null, this.SAMPLE_AD_TAG, false);
+  this.player.ima.setContentWithAdTag(null, this.adVastTagz, false);
   this.player.ima.requestAds();
   this.wrapperDiv.removeEventListener(this.startEvent, this.boundInit);
 };

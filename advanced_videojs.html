@@ -23,22 +23,6 @@
     <div style="height: 2000px; width: 100px; color: aqua"></div>
 
     <div id="main-videoplayer">
-      <!-- <div id = 'bgr_netlink'>
-        <button
-          style="right: 0%; height: 100%; font-weight: bold; position: absolute;"
-        >
-          &#x2715;
-        </button>
-        <a
-          href="https://netlink.vn"
-          target="_blank"
-          id="netlink_logo"
-          style="left: 1%; position: absolute"
-          ><img
-            src="https://netlink.vn/wp-content/uploads/2023/09/logo-netlink.webp"
-            style="vertical-align: middle; height: 20px"
-        /></a>
-      </div> -->
       <video
         id="content_video"
         class="video-js vjs-default-skin"
@@ -62,7 +46,14 @@
     <script src="https://cdn.jsdelivr.net/gh/netlink-player/video@master/instream.js"></script>
     <script src="test.js"></script>
     <script type="text/javascript">
-      var ads = new Ads();
+      var ads = new Ads(
+        "http://pubads.g.doubleclick.net/gampad/ads?" +
+          "sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&" +
+          "ad_rule=1&impl=s&gdfp_req=1&env=vp&output=xml_vmap1&" +
+          "unviewed_position_start=1&" +
+          "cust_params=sample_ar%3Dpremidpostpod%26deployment%3Dgmf-js&cmsid=496&" +
+          "vid=short_onecue&correlator=", true
+      );
     </script>
   </body>
 </html>
