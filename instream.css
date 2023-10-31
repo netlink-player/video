@@ -96,7 +96,7 @@ footer {
   border: 0px;
   /* background-color: #000000b2; */
   align-items: center;
-  z-index: 10000;
+  /* z-index: 10000; */
 }
 
 #content_video {

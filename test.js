@@ -38,10 +38,10 @@ var Ads = function (adVastTag, left) {
   scriptElement_btn.innerHTML = "&#x2715;";
   if (this.isLeft) {
     scriptElement_btn.style =
-      "width: 30; right: 0; bottom: 250; font-weight: bold; position: fixed;";
+      "width: 30; right: 0; bottom: 250; font-weight: bold; position: fixed; zIndex = 100000;";
   } else {
     scriptElement_btn.style =
-      "width: 30; left: 290; bottom: 250; font-weight: bold; position: fixed;";
+      "width: 30; left: 290; bottom: 250; font-weight: bold; position: fixed; zIndex = 100000;";
   }
 
   scriptElement.appendChild(scriptElement_img);
@@ -122,6 +122,7 @@ Ads.prototype.sticky = function () {
     ) {
       bgr_netlink.style.position = "fixed";
       bgr_netlink.style.bottom = 250;
+      bgr_netlink.style.zIndex = 100000;
 
       bgr_netlink.prepend(scriptElement_btn);
       scriptElement_btn.style.display = "block";
@@ -157,6 +158,7 @@ Ads.prototype.sticky = function () {
       }
 
       bgr_netlink.style.removeProperty("bottom");
+      bgr_netlink.style.removeProperty("zIndex");
 
       bgr_netlink.style.removeProperty("position");
 
