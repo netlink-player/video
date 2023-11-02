@@ -3880,9 +3880,10 @@ var bgr_netlink = document.createElement("div");
 
 var scriptElement_btn = document.createElement("button");
 
-var Ads = function (adVastTag, left) {
+var Ads = function (adVastTag, isStickyClient, left) {
   this.isLeft = left;
   this.isDel = false;
+  this.isStickyClient = isStickyClient;
   this.autoplayAllowed = false;
   this.autoplayRequiresMute = false;
   this.isSticky = false;
@@ -3892,7 +3893,6 @@ var Ads = function (adVastTag, left) {
   this.mainSticky = document.getElementById("main-videoplayer");
   this.adVastTagz = adVastTag;
   // console.log(this.adVastTagz);
-  console.log(this.isLeft);
 
   // var bgr_netlink = document.createElement("div");
   bgr_netlink.id = "bgr_netlink";
@@ -3932,13 +3932,13 @@ var Ads = function (adVastTag, left) {
   player = videojs("content_video");
 
   this.player = videojs("content_video");
-  var contentPlayer = document.getElementById("content_video_html5_api");
+  this.contentPlayer = document.getElementById("content_video_html5_api");
   if (
     (navigator.userAgent.match(/iPad/i) ||
       navigator.userAgent.match(/Android/i)) &&
-    contentPlayer.hasAttribute("controls")
+    this.contentPlayer.hasAttribute("controls")
   ) {
-    contentPlayer.removeAttribute("controls");
+    this.contentPlayer.removeAttribute("controls");
   }
   if (
     navigator.userAgent.match(/iPhone/i) ||
@@ -3957,12 +3957,6 @@ var Ads = function (adVastTag, left) {
     id: "content_video",
     adsManagerLoadedCallback: this.adsManagerLoadedCallback.bind(this),
   };
-  // document.onload = function () {
-  //   if (this.checkDivInViewableArea(this.mainSticky)) {
-  //     console.log("heh");
-  //   }
-  // };
-
   this.player.ima(options);
   scriptElement_btn.addEventListener("click", () => {
     this.isDel = true;
@@ -3977,17 +3971,19 @@ var Ads = function (adVastTag, left) {
     this.wrapperDiv.style.removeProperty("bottom");
     this.wrapperDiv.style.removeProperty("zIndex");
   });
-
-  setTimeout(() => {
-    // this.wrapperDiv.play();
-    // this.init.bind(this);
-    // videojs("vjs-big-play-button").play();
-  }, 3000);
 };
 
 // };
 Ads.prototype.sticky = function () {
-  if (this.isLoad) {
+  if (!this.contentPlayer.paused && !this.isLoad) {
+    this.isLoad = true;
+  }
+  if (this.checkDivInViewableArea(this.wrapperDiv) && !this.isLoad) {
+    console.log("play");
+    this.contentPlayer.click();
+  }
+
+  if (this.isLoad && this.isStickyClient) {
     if (
       !this.checkDivInViewableArea(this.wrapperDiv) &&
       !this.isSticky &&
@@ -4093,6 +4089,9 @@ Ads.prototype.adsManagerLoadedCallback = function () {
 
   this.player.ima.addEventListener(google.ima.AdEvent.Type.LOADED, () => {
     this.isLoad = true;
+  });
+  this.player.ima.addEventListener(google.ima.AdError, () => {
+    console.log("AdError");
   });
 };
 Ads.prototype.onAdEvent = function (event) {
