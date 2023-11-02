@@ -3980,7 +3980,7 @@ Ads.prototype.sticky = function () {
   }
   if (this.checkDivInViewableArea(this.wrapperDiv) && !this.isLoad) {
     console.log("play");
-    this.contentPlayer.click();
+    // this.contentPlayer.click();
   }
 
   if (this.isLoad && this.isStickyClient) {
