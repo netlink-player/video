@@ -3990,7 +3990,7 @@ Ads.prototype.sticky = function () {
       !this.isDel
     ) {
       bgr_netlink.style.position = "fixed";
-      bgr_netlink.style.bottom = 250;
+      bgr_netlink.style.bottom = "250px !important";
       bgr_netlink.style.zIndex = 100000;
 
       bgr_netlink.prepend(scriptElement_btn);
