@@ -3911,10 +3911,10 @@ var Ads = function (adVastTag, isStickyClient, left) {
   scriptElement_btn.innerHTML = "&#x2715;";
   if (this.isLeft) {
     scriptElement_btn.style =
-      "width: 30; right: 0; bottom: 250; font-weight: bold; position: fixed; zIndex = 100000;";
+      "width: 30; right: 0 !important; bottom: 250 !important; font-weight: bold; position: fixed !important; zIndex = 100000 !important;";
   } else {
     scriptElement_btn.style =
-      "width: 30; left: 290; bottom: 250; font-weight: bold; position: fixed; zIndex = 100000;";
+      "width: 30; left: 290 !important; bottom: 250 !important; font-weight: bold; position: fixed !important; zIndex = 100000 !important;";
   }
 
   scriptElement.appendChild(scriptElement_img);
