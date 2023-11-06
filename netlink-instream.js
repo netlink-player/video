@@ -3996,12 +3996,18 @@ bgr_netlink.style.setProperty('bottom', '250px', 'important');
 
       bgr_netlink.prepend(scriptElement_btn);
       scriptElement_btn.style.display = "block";
+	scriptElement_btn.style.setProperty('width', '30px', 'important');
+	scriptElement_btn.style.setProperty('bottom', '250px', 'important');
 
       if (this.isLeft) {
+	    
+	      scriptElement_btn.style.setProperty('right', '0px', 'important');
+	
         bgr_netlink.style.width = 320;
         bgr_netlink.style.right = 0;
         this.wrapperDiv.style.right = 0;
       } else {
+	      scriptElement_btn.style.setProperty('left', '290px', 'important');
         bgr_netlink.style.left = 0;
         this.wrapperDiv.style.left = 0;
       }
