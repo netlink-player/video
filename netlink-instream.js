@@ -3968,6 +3968,8 @@ var Ads = function (adVastTag, isStickyClient, left) {
 	  bgr_netlink.style.removeProperty("zIndex");
 	  bgr_netlink.style.setProperty('zIndex', '0', 'important');
 	  this.wrapperDiv.style.setProperty('zIndex', '0', 'important');
+	  bgr_netlink.style.zIndex = '0';
+	    this.wrapperDiv.style.zIndex = '0';
     this.wrapperDiv.style.removeProperty("height");
     this.wrapperDiv.style.removeProperty("width");
     this.wrapperDiv.style.removeProperty("position");
@@ -4002,17 +4004,18 @@ bgr_netlink.style.setProperty('bottom', '250px', 'important');
       scriptElement_btn.style.display = "block";
 	scriptElement_btn.style.setProperty('width', '30px', 'important');
 	scriptElement_btn.style.setProperty('bottom', '250px', 'important');
+	    bgr_netlink.style.width = 320;
 
       if (this.isLeft) {
 	    
 	      scriptElement_btn.style.setProperty('right', '0px', 'important');
 	
-        bgr_netlink.style.width = 320;
+        
         bgr_netlink.style.right = 0;
         this.wrapperDiv.style.right = 0;
       } else {
 	      scriptElement_btn.style.setProperty('left', '290px', 'important');
-	      bgr_netlink.style.setProperty('width', '320px', 'important');
+	      // bgr_netlink.style.setProperty('width', '320px', 'important');
         bgr_netlink.style.left = 0;
         this.wrapperDiv.style.left = 0;
       }
@@ -4044,7 +4047,8 @@ bgr_netlink.style.setProperty('bottom', '250px', 'important');
       bgr_netlink.style.removeProperty("position");
 	    bgr_netlink.style.setProperty('zIndex', '0', 'important');
 	  this.wrapperDiv.style.setProperty('zIndex', '0', 'important');
-
+	    bgr_netlink.style.zIndex = '0';
+	    this.wrapperDiv.style.zIndex = '0';
       this.wrapperDiv.style.removeProperty("height");
       this.wrapperDiv.style.removeProperty("width");
       this.wrapperDiv.style.removeProperty("position");
