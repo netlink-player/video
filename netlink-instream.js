@@ -3879,6 +3879,7 @@ document.getElementsByTagName("head")[0].appendChild(style);
 var bgr_netlink = document.createElement("div");
 
 var scriptElement_btn = document.createElement("button");
+var scriptElement = document.createElement("a");
 
 var Ads = function (adVastTag, isStickyClient, left) {
   this.isLeft = left;
@@ -3897,10 +3898,10 @@ var Ads = function (adVastTag, isStickyClient, left) {
   // var bgr_netlink = document.createElement("div");
   bgr_netlink.id = "bgr_netlink";
 
-  var scriptElement = document.createElement("a");
+  
   scriptElement.href = "https://netlink.vn";
   scriptElement.id = "netlink_logo";
-  // scriptElement.style = "left: 0; position: absolute";
+  scriptElement.style = "position: absolute";
 
   var scriptElement_img = document.createElement("img");
   scriptElement_img.src =
@@ -4014,6 +4015,7 @@ bgr_netlink.style.setProperty('bottom', '250px', 'important');
         bgr_netlink.style.right = 0;
         this.wrapperDiv.style.right = 0;
       } else {
+	      scriptElement.style.right = "242px !important";
 	      scriptElement_btn.style.setProperty('left', '290px', 'important');
 	      // bgr_netlink.style.setProperty('width', '320px', 'important');
         bgr_netlink.style.left = 0;
@@ -4049,6 +4051,7 @@ bgr_netlink.style.setProperty('bottom', '250px', 'important');
 	  this.wrapperDiv.style.setProperty('zIndex', '0', 'important');
 	    bgr_netlink.style.zIndex = '0';
 	    this.wrapperDiv.style.zIndex = '0';
+	    scriptElement.removeProperty("right");
       this.wrapperDiv.style.removeProperty("height");
       this.wrapperDiv.style.removeProperty("width");
       this.wrapperDiv.style.removeProperty("position");
