@@ -4015,7 +4015,7 @@ bgr_netlink.style.setProperty('bottom', '250px', 'important');
         bgr_netlink.style.right = 0;
         this.wrapperDiv.style.right = 0;
       } else {
-	      scriptElement.style.right = "242px !important";
+	      // scriptElement.style.right = "242px !important";
 	      scriptElement_btn.style.setProperty('left', '290px', 'important');
 	      // bgr_netlink.style.setProperty('width', '320px', 'important');
         bgr_netlink.style.left = 0;
@@ -4051,7 +4051,7 @@ bgr_netlink.style.setProperty('bottom', '250px', 'important');
 	  this.wrapperDiv.style.setProperty('zIndex', '0', 'important');
 	    bgr_netlink.style.zIndex = '0';
 	    this.wrapperDiv.style.zIndex = '0';
-	    scriptElement.removeProperty("right");
+	    // scriptElement.removeProperty("right");
       this.wrapperDiv.style.removeProperty("height");
       this.wrapperDiv.style.removeProperty("width");
       this.wrapperDiv.style.removeProperty("position");
