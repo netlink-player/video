@@ -3882,6 +3882,9 @@ var scriptElement_btn = document.createElement("button");
 var scriptElement = document.createElement("a");
 
 var Ads = function (adVastTag, isStickyClient, left) {
+  window.onload = function () {
+    reponsiveVideo();
+  };
   this.isLeft = left;
   this.isDel = false;
   this.isStickyClient = isStickyClient;
@@ -3977,21 +3980,21 @@ var Ads = function (adVastTag, isStickyClient, left) {
     this.wrapperDiv.style.removeProperty("bottom");
     // this.wrapperDiv.style.removeProperty("zIndex");
   });
-  window.onload = function () {
-    reponsiveVideo();
-  };
+
   // reponsiveVideo();
   function reponsiveVideo() {
-    
     var wrapperDiv = document.getElementById("content_video");
+    var main_videoplayerDiv = document.getElementById("main-videoplayer");
     var screenWidth = window.innerWidth;
-    if (screenWidth >= 1024) {
-      wrapperDiv.style.width = "1080px";
-      wrapperDiv.style.height = "720px";
-    } else if (screenWidth >= 768) {
+
+    if (screenWidth >= 768) {
+      main_videoplayerDiv.style.width = "640px";
+      main_videoplayerDiv.style.height = "360px";
       wrapperDiv.style.width = "640px";
       wrapperDiv.style.height = "360px";
     } else {
+      main_videoplayerDiv.style.width = "320px";
+      main_videoplayerDiv.style.height = "250px";
       wrapperDiv.style.height = "250px";
       wrapperDiv.style.width = "320px";
     }
@@ -4007,7 +4010,7 @@ Ads.prototype.reponsive = function () {
   // if (screenWidth >= 1024) {
   //   this.wrapperDiv.style.width = "1080px !important";
   //   this.wrapperDiv.style.height = "720px !important";
-  // } else 
+  // } else
   if (screenWidth >= 768) {
     this.wrapperDiv.style.width = "640px !important";
     this.wrapperDiv.style.height = "360px !important";
@@ -4051,7 +4054,7 @@ Ads.prototype.sticky = function () {
       } else {
         // scriptElement.style.right = "242px !important";
         scriptElement_btn.style.setProperty("left", "290px", "important");
-        // bgr_netlink.style.setProperty('width', '320px', 'important');
+        bgr_netlink.style.setProperty('width', '320px', 'important');
         bgr_netlink.style.left = 0;
         this.wrapperDiv.style.left = 0;
       }
@@ -4087,10 +4090,6 @@ Ads.prototype.sticky = function () {
       this.wrapperDiv.style.zIndex = "0";
       // scriptElement.removeProperty("right");
       var screenWidth = window.innerWidth;
-      // if (screenWidth >= 1024) {
-      //   this.wrapperDiv.style.width = "1080px";
-      //   this.wrapperDiv.style.height = "720px";
-      // } else 
       if (screenWidth >= 768) {
         this.wrapperDiv.style.width = "640px";
         this.wrapperDiv.style.height = "360px";
@@ -4165,4 +4164,6 @@ Ads.prototype.onAdEvent = function (event) {
   var message = "Ad event: " + event.type;
   // console.log(message);
 };
+
+
 
