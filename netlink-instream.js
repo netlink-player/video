@@ -4029,6 +4029,7 @@ Ads.prototype.sticky = function () {
       scriptElement_btn.style.setProperty("width", "30px", "important");
       scriptElement_btn.style.setProperty("bottom", "250px", "important");
       bgr_netlink.style.width = 320;
+	bgr_netlink.style.setProperty('width', '320px', 'important');
 
       if (this.isLeft) {
         scriptElement_btn.style.setProperty("right", "0px", "important");
@@ -4038,7 +4039,7 @@ Ads.prototype.sticky = function () {
       } else {
         // scriptElement.style.right = "242px !important";
         scriptElement_btn.style.setProperty("left", "290px", "important");
-        bgr_netlink.style.setProperty('width', '320px', 'important');
+       
         bgr_netlink.style.left = 0;
         this.wrapperDiv.style.left = 0;
       }
