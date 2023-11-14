@@ -3880,6 +3880,7 @@ var bgr_netlink = document.createElement("div");
 
 var scriptElement_btn = document.createElement("button");
 var scriptElement = document.createElement("a");
+var screenWidth = window.innerWidth;
 
 var Ads = function (adVastTag, isStickyClient, left) {
   window.onload = function () {
@@ -3985,7 +3986,6 @@ var Ads = function (adVastTag, isStickyClient, left) {
   function reponsiveVideo() {
     var wrapperDiv = document.getElementById("content_video");
     var main_videoplayerDiv = document.getElementById("main-videoplayer");
-    var screenWidth = window.innerWidth;
 
     if (screenWidth >= 768) {
       main_videoplayerDiv.style.width = "640px";
@@ -4003,23 +4003,7 @@ var Ads = function (adVastTag, isStickyClient, left) {
 };
 
 // };
-Ads.prototype.reponsive = function () {
-  var screenWidth = window.innerWidth;
-  console.log("okeke");
 
-  // if (screenWidth >= 1024) {
-  //   this.wrapperDiv.style.width = "1080px !important";
-  //   this.wrapperDiv.style.height = "720px !important";
-  // } else
-  if (screenWidth >= 768) {
-    this.wrapperDiv.style.width = "640px !important";
-    this.wrapperDiv.style.height = "360px !important";
-  } else {
-    this.wrapperDiv.style.height = "250px !important";
-    this.wrapperDiv.style.width = "320px !important";
-  }
-  document.addEventListener("resize", this.reponsive.bind(this));
-};
 Ads.prototype.sticky = function () {
   if (!this.contentPlayer.paused && !this.isLoad) {
     this.isLoad = true;
@@ -4045,7 +4029,6 @@ Ads.prototype.sticky = function () {
       scriptElement_btn.style.setProperty("width", "30px", "important");
       scriptElement_btn.style.setProperty("bottom", "250px", "important");
       bgr_netlink.style.width = 320;
-      bgr_netlink.style.setProperty('width', '320px', 'important');
 
       if (this.isLeft) {
         scriptElement_btn.style.setProperty("right", "0px", "important");
@@ -4055,7 +4038,7 @@ Ads.prototype.sticky = function () {
       } else {
         // scriptElement.style.right = "242px !important";
         scriptElement_btn.style.setProperty("left", "290px", "important");
-        
+        bgr_netlink.style.setProperty('width', '320px', 'important');
         bgr_netlink.style.left = 0;
         this.wrapperDiv.style.left = 0;
       }
@@ -4090,7 +4073,7 @@ Ads.prototype.sticky = function () {
       bgr_netlink.style.zIndex = "0";
       this.wrapperDiv.style.zIndex = "0";
       // scriptElement.removeProperty("right");
-      var screenWidth = window.innerWidth;
+
       if (screenWidth >= 768) {
         this.wrapperDiv.style.width = "640px";
         this.wrapperDiv.style.height = "360px";
@@ -4165,6 +4148,7 @@ Ads.prototype.onAdEvent = function (event) {
   var message = "Ad event: " + event.type;
   // console.log(message);
 };
+
 
 
 
