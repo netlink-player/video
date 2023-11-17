@@ -3908,18 +3908,18 @@ var Ads = function (adVastTag, isStickyClient, left) {
 
   var scriptElement_img = document.createElement("img");
   scriptElement_img.src =
-    "https://cdn.jsdelivr.net/gh/netlink-player/video@master/logo-netlink.svg";
+    "https://cdn.jsdelivr.net/gh/netlink-player/video@master/logo-netlink-tag.png";
   scriptElement_img.style =
-    "height: 30px; width: 78px !important; display: block !important";
+    "height: 30px; width: auto !important; display: block !important";
   scriptElement_img.className = "player-logo";
 
   scriptElement_btn.innerHTML = "&#x2715;";
   if (this.isLeft) {
     scriptElement_btn.style =
-      "width: 30; right: 0 !important; bottom: 250 !important; font-weight: bold; position: fixed !important; zIndex = 100000 !important;";
+      "width: 30; right: 0 !important; bottom: 250 !important; font-weight: bold; position: fixed !important; zIndex = 100000 !important; border: none !important; border-radius: 5px 5px 0 0 !important; background: black !important; color: white !important;";
   } else {
     scriptElement_btn.style =
-      "width: 30; left: 290 !important; bottom: 250 !important; font-weight: bold; position: fixed !important; zIndex = 100000 !important;";
+      "width: 30; left: 290 !important; bottom: 250 !important; font-weight: bold; position: fixed !important; zIndex = 100000 !important; border: none !important; border-radius: 5px 5px 0 0 !important; background: black !important;color: white !important;";
   }
 
   scriptElement.appendChild(scriptElement_img);
