@@ -6,8 +6,12 @@ document.getElementsByTagName("head")[0].appendChild(style);
 var bgr_netlink = document.createElement("div");
 
 var scriptElement_btn = document.createElement("button");
-
+var scriptElement = document.createElement("a");
+var screenWidth = window.innerWidth;
 var Ads = function (adVastTag, isStickyClient, left) {
+  window.onload = function () {
+    reponsiveVideo();
+  };
   this.isLeft = left;
   this.isDel = false;
   this.isStickyClient = isStickyClient;
@@ -18,30 +22,30 @@ var Ads = function (adVastTag, isStickyClient, left) {
   this.isFirst = false;
   this.isLoad = false;
   this.mainSticky = document.getElementById("main-videoplayer");
-  this.adVastTagz = adVastTag;
-  // console.log(this.adVastTagz);
+  this.adVastTagz = adVastTag[0];
+
 
   // var bgr_netlink = document.createElement("div");
   bgr_netlink.id = "bgr_netlink";
 
-  var scriptElement = document.createElement("a");
   scriptElement.href = "https://netlink.vn";
   scriptElement.id = "netlink_logo";
-  // scriptElement.style = "left: 0; position: absolute";
+  scriptElement.style = "position: absolute";
 
   var scriptElement_img = document.createElement("img");
   scriptElement_img.src =
-    "https://cdn.jsdelivr.net/gh/netlink-player/video@master/logo-netlink.svg";
-  scriptElement_img.style = "height: 30px; width: 78px !important";
+    "https://cdn.jsdelivr.net/gh/netlink-player/video@master/logo-netlink-tag.png";
+  scriptElement_img.style =
+    "height: 30px; width: auto !important; display: block !important";
   scriptElement_img.className = "player-logo";
 
   scriptElement_btn.innerHTML = "&#x2715;";
   if (this.isLeft) {
     scriptElement_btn.style =
-      "width: 30; right: 0; bottom: 250; font-weight: bold; position: fixed; zIndex = 100000;";
+      "width: 30; right: 0 !important; bottom: 250 !important; font-weight: bold; position: fixed !important; zIndex = 100000 !important; border: none !important; border-radius: 5px 5px 0 0 !important; background: black !important; color: white !important;";
   } else {
     scriptElement_btn.style =
-      "width: 30; left: 290; bottom: 250; font-weight: bold; position: fixed; zIndex = 100000;";
+      "width: 30; left: 290 !important; bottom: 250 !important; font-weight: bold; position: fixed !important; zIndex = 100000 !important; border: none !important; border-radius: 5px 5px 0 0 !important; background: black !important;color: white !important;";
   }
 
   scriptElement.appendChild(scriptElement_img);
@@ -52,14 +56,15 @@ var Ads = function (adVastTag, isStickyClient, left) {
   document.addEventListener("scroll", this.sticky.bind(this));
 
   var vjsOptions = {
-    autoplay: this.autoplayAllowed,
-    muted: this.autoplayRequiresMute,
+    autoplay: true,
+    muted: true,
     debug: true,
   };
-  player = videojs("content_video");
+  player = videojs("content_video", vjsOptions);
 
   this.player = videojs("content_video");
   this.contentPlayer = document.getElementById("content_video_html5_api");
+  this.autoPlayBtn = document.querySelector('.vjs-big-play-button');
   if (
     (navigator.userAgent.match(/iPad/i) ||
       navigator.userAgent.match(/Android/i)) &&
@@ -92,24 +97,45 @@ var Ads = function (adVastTag, isStickyClient, left) {
     bgr_netlink.style.removeProperty("bottom");
     bgr_netlink.style.removeProperty("left");
     bgr_netlink.style.removeProperty("position");
+    bgr_netlink.style.removeProperty("zIndex");
+    bgr_netlink.style.setProperty("zIndex", "0", "important");
+    this.wrapperDiv.style.setProperty("zIndex", "0", "important");
+    bgr_netlink.style.zIndex = "0";
+    this.wrapperDiv.style.zIndex = "0";
     this.wrapperDiv.style.removeProperty("height");
     this.wrapperDiv.style.removeProperty("width");
     this.wrapperDiv.style.removeProperty("position");
     this.wrapperDiv.style.removeProperty("bottom");
-    this.wrapperDiv.style.removeProperty("zIndex");
+    // this.wrapperDiv.style.removeProperty("zIndex");
   });
+
+  // reponsiveVideo();
+  function reponsiveVideo() {
+    var wrapperDiv = document.getElementById("content_video");
+    var main_videoplayerDiv = document.getElementById("main-videoplayer");
+
+    if (screenWidth >= 768) {
+      main_videoplayerDiv.style.width = "640px";
+      main_videoplayerDiv.style.height = "360px";
+      wrapperDiv.style.width = "640px";
+      wrapperDiv.style.height = "360px";
+    } else {
+      main_videoplayerDiv.style.width = "320px";
+      main_videoplayerDiv.style.height = "250px";
+      wrapperDiv.style.height = "250px";
+      wrapperDiv.style.width = "320px";
+    }
+    // document.addEventListener("resize", reponsiveVideo());
+  }
+  this.player.ima.onWaterFall(adVastTag);
 };
 
 // };
+
 Ads.prototype.sticky = function () {
   if (!this.contentPlayer.paused && !this.isLoad) {
     this.isLoad = true;
   }
-  if (this.checkDivInViewableArea(this.wrapperDiv) && !this.isLoad) {
-    console.log("play");
-    this.contentPlayer.click();
-  }
-
   if (this.isLoad && this.isStickyClient) {
     if (
       !this.checkDivInViewableArea(this.wrapperDiv) &&
@@ -117,17 +143,26 @@ Ads.prototype.sticky = function () {
       !this.isDel
     ) {
       bgr_netlink.style.position = "fixed";
-      bgr_netlink.style.bottom = 250;
+      // bgr_netlink.style.bottom = "250px !important";
+      bgr_netlink.style.setProperty("bottom", "250px", "important");
       bgr_netlink.style.zIndex = 100000;
 
       bgr_netlink.prepend(scriptElement_btn);
       scriptElement_btn.style.display = "block";
+      scriptElement_btn.style.setProperty("width", "30px", "important");
+      scriptElement_btn.style.setProperty("bottom", "250px", "important");
+      bgr_netlink.style.width = 320;
+      bgr_netlink.style.setProperty("width", "320px", "important");
 
       if (this.isLeft) {
-        bgr_netlink.style.width = 320;
+        scriptElement_btn.style.setProperty("right", "0px", "important");
+
         bgr_netlink.style.right = 0;
         this.wrapperDiv.style.right = 0;
       } else {
+        // scriptElement.style.right = "242px !important";
+        scriptElement_btn.style.setProperty("left", "290px", "important");
+
         bgr_netlink.style.left = 0;
         this.wrapperDiv.style.left = 0;
       }
@@ -154,22 +189,41 @@ Ads.prototype.sticky = function () {
       }
 
       bgr_netlink.style.removeProperty("bottom");
-      bgr_netlink.style.removeProperty("zIndex");
+      // bgr_netlink.style.removeProperty("zIndex");
 
       bgr_netlink.style.removeProperty("position");
+      bgr_netlink.style.setProperty("zIndex", "0", "important");
+      this.wrapperDiv.style.setProperty("zIndex", "0", "important");
+      bgr_netlink.style.zIndex = "0";
+      this.wrapperDiv.style.zIndex = "0";
+      // scriptElement.removeProperty("right");
 
-      this.wrapperDiv.style.removeProperty("height");
-      this.wrapperDiv.style.removeProperty("width");
+      if (screenWidth >= 768) {
+        this.wrapperDiv.style.width = "640px";
+        this.wrapperDiv.style.height = "360px";
+      } else {
+        this.wrapperDiv.style.height = "250px";
+        this.wrapperDiv.style.width = "320px";
+      }
+      // this.wrapperDiv.style.removeProperty("height");
+      // this.wrapperDiv.style.removeProperty("width");
       this.wrapperDiv.style.removeProperty("position");
       this.wrapperDiv.style.removeProperty("bottom");
-      this.wrapperDiv.style.removeProperty("zIndex");
+      // this.wrapperDiv.style.removeProperty("zIndex");
       scriptElement_btn.style.display = "none";
       this.isSticky = false;
     }
   }
 
-  // console.log(this.checkDivInViewableArea(this.mainSticky));
-  // console.log(this.wrapperDiv.getBoundingClientRect().left == 0);
+  if (this.checkDivInViewableArea(this.wrapperDiv) && !this.isLoad) {
+    console.log("play");
+    var clickEvent = new Event('click', {
+      bubbles: true,
+      cancelable: true
+    });
+    this.autoPlayBtn.click();
+    this.autoPlayBtn.dispatchEvent(clickEvent);
+  }
 };
 
 Ads.prototype.checkDivInViewableArea = function (div) {
@@ -192,7 +246,7 @@ Ads.prototype.SAMPLE_AD_TAG =
 
 Ads.prototype.init = function () {
   this.player.ima.initializeAdDisplayContainer();
-  this.player.ima.setContentWithAdTag(null, this.adVastTagz, false);
+  this.player.ima.setContentWithAdTag(null, this.adVastTagz, true);
   this.player.ima.requestAds();
   this.wrapperDiv.removeEventListener(this.startEvent, this.boundInit);
 };
@@ -217,11 +271,8 @@ Ads.prototype.adsManagerLoadedCallback = function () {
   this.player.ima.addEventListener(google.ima.AdEvent.Type.LOADED, () => {
     this.isLoad = true;
   });
-  this.player.ima.addEventListener(google.ima.AdError, () => {
-    console.log("AdError");
-  });
 };
 Ads.prototype.onAdEvent = function (event) {
   var message = "Ad event: " + event.type;
-  console.log(message);
+  // console.log(message);
 };
