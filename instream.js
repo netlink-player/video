@@ -1545,6 +1545,15 @@ SdkImpl.prototype.onAdsLoaderError = function (event) {
   if (this.adsManager) {
     this.adsManager.destroy();
   }
+  this.vast_int+=1;
+  if(this.vast_int < this.arr_vast.length){
+  this.controller.getSettings().adTagUrl = this.arr_vast[this.vast_int];
+  this.requestAds()
+  }
+};
+SdkImpl.prototype.onWaterFall = function (arrayy) {
+  this.arr_vast = arrayy;
+  this.vast_int = 0;
 };
 
 /**
@@ -2152,6 +2161,10 @@ Controller.prototype.getContentPlayheadTracker = function () {
  */
 Controller.prototype.requestAds = function () {
   this.sdkImpl.requestAds();
+};
+
+Controller.prototype.onWaterFall = function (array) {
+  this.sdkImpl.onWaterFall(array);
 };
 
 /**
@@ -3619,6 +3632,10 @@ var ImaPlugin = function ImaPlugin(player, options) {
    */
   this.requestAds = function () {
     this.controller.requestAds();
+  }.bind(this);
+
+  this.onWaterFall = function (array) {
+    this.controller.onWaterFall(array);
   }.bind(this);
 
   /**
