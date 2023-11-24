@@ -16,14 +16,11 @@
 
 <html>
   <head>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/netlink-player/video@master/instream.css"
-    />
+    <link rel="stylesheet" href="instream.css" />
     <title>Video.js ima Plugin</title>
   </head>
   <body>
-    <div style="height: 2000px; width: 100px; color: aqua"></div>
+    <div style="height: 1000px; width: 100px; color: aqua"></div>
 
     <div id="main-videoplayer">
       <video
@@ -31,30 +28,36 @@
         class="video-js vjs-default-skin"
         controls
         preload="auto"
-        height="480"
-        width="640"
         playsinline
         src="//commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
       >
-        <button class="playButton" style="display: none"></button>
+        <!-- <button class="playButton" style="display: none"></button> -->
       </video>
     </div>
 
     <div style="height: 1000px; width: 100px; color: aqua"></div>
 
     <script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <!-- <script src="instream.js"></script> -->
+    <script src="test.js"></script>
     <script src="instream.js"></script>
-    <script src="netlink-instream.js"></script>
     <script type="text/javascript">
       var ads = new Ads(
-        "http://pubads.g.doubleclick.net/gampad/ads?" +
-          "sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&" +
-          "ad_rule=1&impl=s&gdfp_req=1&env=vp&output=xml_vmap1&" +
-          "unviewed_position_start=1&" +
-          "cust_params=sample_ar%3Dpremidpostpod%26deployment%3Dgmf-js&cmsid=496&" +
-          "vid=short_onecue&correlator=",
-        false,
-        false
+        [
+          "https://pubads.g.doubleclick.net/gampad/ads?iu=/93656639,23003316459/Mytv_app/Mytv_app_vast&description_url=http%3A%2F%2Fnetlink.vn&tfcd=0&npa=0&sz=400x300%7C640x360%7C640x480&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
+          "https://googleads.g.doubleclick.net/pagead/ads?ad_type=video_image&client=ca-video-pub-3166493188367342&description_url=http%3A%2F%2Fwww.tinmoi.vn&videoad_start_delay=0&hl=en&max_ad_duration=15000&sdmax=30000",
+
+          "https://pubads.g.doubleclick.net/gampad/ads?iu=/93656639,52958642/instream_netlink&description_url=http%3A%2F%2Fnetlink.vn&tfcd=0&npa=0&sz=400x300%7C640x360%7C640x480&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
+          // "http://pubads.g.doubleclick.net/gampad/ads?" +
+          //   "sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&" +
+          //   "ad_rule=1&impl=s&gdfp_req=1&env=vp&output=xml_vmap1&" +
+          //   "unviewed_position_start=1&" +
+          //   "cust_params=sample_ar%3Dpremidpostpod%26deployment%3Dgmf-js&cmsid=496&" +
+          //   "vid=short_onecue&correlator=",
+          "https://pubads.g.doubleclick.net/gampad/ads?iu=/22486823495/video_instream&description_url=https%3A%2F%2Fnetlink.vn%2F&tfcd=0&npa=0&sz=640x480&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
+        ],
+        true,
+        true
       );
     </script>
   </body>
