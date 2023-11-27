@@ -3924,7 +3924,7 @@ var Ads = function (adVastTag, isStickyClient, left) {
 
   var scriptElement_img = document.createElement("img");
   scriptElement_img.src =
-    "https://cdn.jsdelivr.net/gh/netlink-player/video@master/logo-netlink-tag-bgr.png";
+    "https://cdn.jsdelivr.net/gh/netlink-player/video@master/logo-netlink-tag.png";
   scriptElement_img.style =
     "height: 30px; width: auto !important; display: block !important";
   scriptElement_img.className = "player-logo";
