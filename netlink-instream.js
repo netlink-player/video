@@ -3898,11 +3898,12 @@ var bgr_netlink = document.createElement("div");
 var scriptElement_btn = document.createElement("button");
 var scriptElement = document.createElement("a");
 var screenWidth = window.innerWidth;
-var Ads = function (adVastTag, isStickyClient, left) {
+var Ads = function (adVastTag, isStickyClient, left, isAutoplay) {
   window.onload = function () {
     reponsiveVideo();
   };
   this.isLeft = left;
+  this.isAutoplay = isAutoplay;
   this.isDel = false;
   this.isStickyClient = isStickyClient;
   this.autoplayAllowed = false;
@@ -4105,7 +4106,7 @@ Ads.prototype.sticky = function () {
     }
   }
 
-  if (this.checkDivInViewableArea(this.wrapperDiv) && !this.isLoad) {
+  if (this.checkDivInViewableArea(this.wrapperDiv) && !this.isLoad && this.isAutoplay) {
     console.log("play");
     var clickEvent = new Event('click', {
       bubbles: true,
