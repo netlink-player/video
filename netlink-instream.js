@@ -3955,7 +3955,6 @@ var Ads = function (adVastTag, isStickyClient, left, isAutoplay) {
 
   this.player = videojs("content_video");
   this.contentPlayer = document.getElementById("content_video_html5_api");
-  this.autoPlayBtn = document.querySelector('.vjs-big-play-button');
   if (
     (navigator.userAgent.match(/iPad/i) ||
       navigator.userAgent.match(/Android/i)) &&
@@ -4112,8 +4111,9 @@ Ads.prototype.sticky = function () {
       bubbles: true,
       cancelable: true
     });
-    this.autoPlayBtn.click();
-    this.autoPlayBtn.dispatchEvent(clickEvent);
+    var autoPlayBtn = document.querySelector('.vjs-big-play-button');
+    autoPlayBtn.click();
+    autoPlayBtn.dispatchEvent(clickEvent);
   }
 };
 
