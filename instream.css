@@ -14,28 +14,6 @@
  * limitations under the License.
  */
 
-body {
-  font-family: arial, verdana, sans-serif;
-}
-
-header,
-footer {
-  text-align: center;
-  width: 100%;
-}
-
-header {
-  height: 40px;
-  font-size: 40px;
-  font-weight: bold;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-footer {
-  margin-top: 20px;
-}
-
 #ima-sample-container {
   margin-left: auto;
   margin-right: auto;
