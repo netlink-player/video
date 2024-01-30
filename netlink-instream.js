@@ -3901,7 +3901,7 @@ var scriptElement_img = document.createElement("img");
 var screenWidth = window.innerWidth;
 var Ads = function (adVastTag, isStickyClient, left, isAutoplay, stickySize) {
   setTimeout(function(){
-    // reponsiveVideo();
+    reponsiveVideo();
   }, 0);
   this.isLeft = left;
   this.isAutoplay = isAutoplay;
@@ -4118,11 +4118,12 @@ Ads.prototype.sticky = function () {
       // scriptElement.removeProperty("right");
 
       if (screenWidth >= 768) {
-        wrapperDiv.style.setProperty("width", "640px", "important");
-        wrapperDiv.style.setProperty("height", "380px", "important");
+        this.wrapperDiv.style.setProperty("width", "640px", "important");
+        this.wrapperDiv.style.setProperty("height", "380px", "important");
+	//changess
       } else {
-        wrapperDiv.style.setProperty("width", "400px", "important");
-        wrapperDiv.style.setProperty("height", "300px", "important");
+        this.wrapperDiv.style.setProperty("width", "300px", "important");
+        this.wrapperDiv.style.setProperty("height", "250px", "important");
       }
       // this.wrapperDiv.style.removeProperty("height");
       // this.wrapperDiv.style.removeProperty("width");
