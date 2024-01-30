@@ -1549,6 +1549,8 @@ SdkImpl.prototype.onAdsLoaderError = function (event) {
   if(this.vast_int < this.arr_vast.length){
   this.controller.getSettings().adTagUrl = this.arr_vast[this.vast_int];
   this.requestAds()
+  }else{
+    document.getElementById('main-videoplayer').remove();
   }
 };
 SdkImpl.prototype.onWaterFall = function (arrayy) {
