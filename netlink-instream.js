@@ -1550,7 +1550,8 @@ SdkImpl.prototype.onAdsLoaderError = function (event) {
   this.controller.getSettings().adTagUrl = this.arr_vast[this.vast_int];
   this.requestAds()
   }else{
-    document.getElementById('main-videoplayer').remove();
+    window.top.document.getElementById('main-videoplayer').remove();
+    console.log('noads');
   }
 };
 SdkImpl.prototype.onWaterFall = function (arrayy) {
@@ -1600,6 +1601,8 @@ SdkImpl.prototype.onAdError = function (adErrorEvent) {
   window.console.warn('Ad error: ' + errorMessage);
 
   this.adsManager.destroy();
+  window.top.document.getElementById('main-videoplayer').remove();
+    console.log('noads');
   this.controller.onAdError(adErrorEvent);
 
   // reset these so consumers don't think we are still in an ad break,
@@ -4122,7 +4125,6 @@ Ads.prototype.sticky = function () {
       if (screenWidth >= 768) {
         this.wrapperDiv.style.setProperty("width", "640px", "important");
         this.wrapperDiv.style.setProperty("height", "380px", "important");
-	//changess
       } else {
         this.wrapperDiv.style.setProperty("width", "300px", "important");
         this.wrapperDiv.style.setProperty("height", "250px", "important");
@@ -4197,7 +4199,7 @@ Ads.prototype.adsManagerLoadedCallback = function () {
 };
 Ads.prototype.onAdEvent = function (event) {
   var message = "Ad event: " + event.type;
-  // console.log(message);
+  console.log(message);
 };
 
 
