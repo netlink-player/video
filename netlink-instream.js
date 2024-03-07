@@ -3970,7 +3970,7 @@ var Ads = function (adVastTag, isStickyClient, left, isAutoplay, stickySize) {
 
   var vjsOptions = {
     autoplay: true,
-    muted: true,
+    muted: false,
     debug: true,
   };
   player = videojs("content_video", vjsOptions);
