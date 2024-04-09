@@ -4027,25 +4027,12 @@ var Ads = function (adVastTag, isStickyClient, left, isAutoplay, stickySize) {
     var main_videoplayerDiv = document.getElementById("main-videoplayer");
 
     if (screenWidth >= 768) {
-      main_videoplayerDiv.style.width = "640px";
-      main_videoplayerDiv.style.height = "360px";
-      wrapperDiv.style.width = "640px";
-      wrapperDiv.style.height = "360px";
-      // main_videoplayerDiv.style.setProperty("width", "640px", "important");
-      // main_videoplayerDiv.style.setProperty("height", "360px", "important");
-      // wrapperDiv.style.setProperty("width", "640px", "important");
-      // wrapperDiv.style.setProperty("height", "360px", "important");
+      main_videoplayerDiv.style.width = wrapperDiv.style.width = "640px";
+      main_videoplayerDiv.style.height = wrapperDiv.style.height = "360px";  
     } else {
-      main_videoplayerDiv.style.width = "300px";
-      main_videoplayerDiv.style.height = "250px";
-      wrapperDiv.style.height = "250px";
-      wrapperDiv.style.width = "300px";
-      // main_videoplayerDiv.style.setProperty("width", "400px", "important");
-      // main_videoplayerDiv.style.setProperty("height", "300px", "important");
-      // wrapperDiv.style.setProperty("width", "400px", "important");
-      // wrapperDiv.style.setProperty("height", "300px", "important");
+      main_videoplayerDiv.style.width = wrapperDiv.style.width = "100%";
+      main_videoplayerDiv.style.height = wrapperDiv.style.height = "250px";
     }
-    // document.addEventListener("resize", reponsiveVideo());
   }
   this.player.ima.onWaterFall(adVastTag);
 };
