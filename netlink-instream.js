@@ -4113,14 +4113,11 @@ Ads.prototype.sticky = function () {
         this.wrapperDiv.style.setProperty("width", "640px", "important");
         this.wrapperDiv.style.setProperty("height", "380px", "important");
       } else {
-        this.wrapperDiv.style.setProperty("width", "300px", "important");
+        this.wrapperDiv.style.setProperty("width", "100%", "important");
         this.wrapperDiv.style.setProperty("height", "250px", "important");
       }
-      // this.wrapperDiv.style.removeProperty("height");
-      // this.wrapperDiv.style.removeProperty("width");
       this.wrapperDiv.style.removeProperty("position");
       this.wrapperDiv.style.removeProperty("bottom");
-      // this.wrapperDiv.style.removeProperty("zIndex");
       scriptElement_btn.style.display = "none";
       this.isSticky = false;
     }
