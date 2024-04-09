@@ -4030,7 +4030,7 @@ var Ads = function (adVastTag, isStickyClient, left, isAutoplay, stickySize) {
       main_videoplayerDiv.style.width = wrapperDiv.style.width = "640px";
       main_videoplayerDiv.style.height = wrapperDiv.style.height = "360px";  
     } else {
-      main_videoplayerDiv.style.width = wrapperDiv.style.width = "100%";
+      main_videoplayerDiv.style.width = wrapperDiv.style.width = "320px";
       main_videoplayerDiv.style.height = wrapperDiv.style.height = "250px";
     }
   }
@@ -4107,13 +4107,12 @@ Ads.prototype.sticky = function () {
       this.wrapperDiv.style.setProperty("zIndex", "0", "important");
       bgr_netlink.style.zIndex = "0";
       this.wrapperDiv.style.zIndex = "0";
-      // scriptElement.removeProperty("right");
 
       if (screenWidth >= 768) {
         this.wrapperDiv.style.setProperty("width", "640px", "important");
         this.wrapperDiv.style.setProperty("height", "380px", "important");
       } else {
-        this.wrapperDiv.style.setProperty("width", "100%", "important");
+        this.wrapperDiv.style.setProperty("width", "320px", "important");
         this.wrapperDiv.style.setProperty("height", "250px", "important");
       }
       this.wrapperDiv.style.removeProperty("position");
